@@ -4,6 +4,7 @@ const thoughtController = {
     // get all thoughts
     getAllThought(req, res) {
         Thought.find({})
+            .select('-__v')
             .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => {
                 console.log(err);
@@ -14,6 +15,7 @@ const thoughtController = {
     // get one thought by id
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.id })
+            .select('-__v')
             .then(dbThoughtData => {
                 // If no thought is found, send 404
                 if (!dbThoughtData) {

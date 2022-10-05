@@ -7,8 +7,18 @@ const UserSchema = new Schema({
     email: {
         type: String
     },
-    thoughts: [],
-    friends: []
+    thoughts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Thought'
+        }
+    ],
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 });
 
 // create the Username model using the UsernameSchema
