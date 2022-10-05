@@ -12,7 +12,7 @@ const UserSchema = new Schema({
 });
 
 // create the Username model using the UsernameSchema
-const User = model('Username', UserSchema);
+const User = model('User', UserSchema);
 
 
 // export the Username model
