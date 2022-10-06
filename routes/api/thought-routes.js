@@ -21,10 +21,10 @@ router
     .get(getThoughtById)
     .put(updateThought)
     .delete(deleteThought)
+    //.post(createThought)
+router
+    .route('/:userId')
     .post(createThought)
-// router
-//     .route('/:userId')
-//     .post(createThought)
 
 router
     .route('/:id/reactions')
