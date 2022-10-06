@@ -31,31 +31,32 @@ const thoughtController = {
     },
 
     // create thought
-    // createThought({ body }, res) {
-    //     Thought.create(body)
-    //         .then(dbThoughtData => res.json(dbThoughtData))
-    //         .catch(err => res.status(400).json(err));
-    // },
-
     createThought({ body }, res) {
-        console.log(body);
         Thought.create(body)
-            .then(({ _id }) => {
-                return User.findOneAndUpdate(
-                    { _id: body.id },
-                    { $push: { thoughts: _id } },
-                    { new: true, runValidators: true }
-                );
-            })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this id!' });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => res.json(err));
+            .then(dbThoughtData => res.json(dbThoughtData))
+            .catch(err => res.status(400).json(err));
     },
+
+    // createThought(req, res) {
+    //     console.log(req.body.username);
+    //     Thought.create(req.body)
+    //         .then(({_id}) => {
+    //             // console.log({})
+    //             return User.findOneAndUpdate(
+    //                 { _id: req.body.id },
+    //                 { $push: { thoughts: _id } },
+    //                 { new: true, runValidators: true }
+    //             );
+    //         })
+    //         .then(dbUserData => {
+    //             if (!dbUserData) {
+    //                 res.status(404).json({ message: 'No user found with this id!' });
+    //                 return;
+    //             }
+    //             res.json(dbUserData);
+    //         })
+    //         .catch(err => res.json(err));
+    // },
 
     // update thought by id
     updateThought({ params, body }, res) {
